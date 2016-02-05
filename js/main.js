@@ -19,9 +19,11 @@ window.onload = function() {
 
 	    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	    game.load.image('background', 'assets/background2.png');
+		game.load.image('starie', 'assets/star.png');
 
 	}
 
+	var star;
 	var player;
 	var facing = 'left';
 	var jumpTimer = 0;
@@ -40,15 +42,21 @@ window.onload = function() {
 	    game.physics.arcade.gravity.y = 250;
 
 	    player = game.add.sprite(32, 32, 'dude');
-	    game.physics.enable(player, Phaser.Physics.ARCADE);
+		star = game.add.sprit(16, 16, 'starie');
+	    game.physics.enable( [player, star], Phaser.Physics.ARCADE);
 
 	    player.body.bounce.y = 0.2;
 	    player.body.collideWorldBounds = true;
 	    player.body.setSize(20, 32, 5, 16);
+		
+		star.body.collideWorldBounds=true;
+		star.body.bounce.y=0.8;
+		star.body.gravity.y=200;
 
 	    player.animations.add('left', [0, 1, 2, 3], 10, true);
 	    player.animations.add('turn', [4], 20, true);
 	    player.animations.add('right', [5, 6, 7, 8], 10, true);
+		
 
 	    cursors = game.input.keyboard.createCursorKeys();
 	    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
