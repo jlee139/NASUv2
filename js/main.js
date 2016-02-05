@@ -17,7 +17,7 @@ window.onload = function() {
 
 	function preload() {
 
-	    game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
+	    //game.load.tilemap('level1', 'assets/games/starstruck/level1.json', null, Phaser.Tilemap.TILED_JSON);
 	    game.load.image('tiles-1', 'assets/games/starstruck/tiles-1.png');
 	    game.load.spritesheet('dude', 'assets/games/starstruck/dude.png', 32, 48);
 	    game.load.spritesheet('droid', 'assets/games/starstruck/droid.png', 32, 32);
@@ -27,7 +27,7 @@ window.onload = function() {
 
 	}
 
-	var map;
+	//var map;
 	var tileset;
 	var layer;
 	var player;
@@ -46,13 +46,13 @@ window.onload = function() {
 	    bg = game.add.tileSprite(0, 0, 800, 600, 'background');
 	    bg.fixedToCamera = true;
 
-	    map = game.add.tilemap('level1');
+	    //map = game.add.tilemap('level1');
 
-	    map.addTilesetImage('tiles-1');
+	    //map.addTilesetImage('tiles-1');
 
-	    map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
+	    //map.setCollisionByExclusion([ 13, 14, 15, 16, 46, 47, 48, 49, 50, 51 ]);
 
-	    layer = map.createLayer('Tile Layer 1');
+	    //layer = map.createLayer('Tile Layer 1');
 
 	    //  Un-comment this on to see the collision tiles
 	    // layer.debug = true;
