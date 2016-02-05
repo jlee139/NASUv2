@@ -42,7 +42,7 @@ window.onload = function() {
 	    game.physics.arcade.gravity.y = 250;
 
 	    player = game.add.sprite(32, 32, 'dude');
-		star = game.add.sprit(16, 16, 'starie');
+		star = game.add.sprite(16, 16, 'starie');
 	    game.physics.enable( [player, star], Phaser.Physics.ARCADE);
 
 	    player.body.bounce.y = 0.2;
