@@ -71,7 +71,11 @@ window.onload = function() {
 		scoreText = game.add.text(32, 10, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
 		introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
 		introText.anchor.setTo(0.5, 0.5);
+		
+		if(timer=0){
 		game.input.onDown.add(createEffect, this);
+		timer++;
+	}
 
 	}
 
@@ -155,7 +159,7 @@ window.onload = function() {
 	
 	function gameOver() {
     
-		if(timer==0){
+		if(timer==1){
 	    fx.play('over');
 		introText.text = 'Game Over!';
 	    introText.visible = true;
