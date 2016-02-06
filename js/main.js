@@ -122,9 +122,6 @@ window.onload = function() {
 	            facing = 'idle';
 	        }
 	    }
-		
-		
-    
 
 	}
 	
@@ -147,7 +144,7 @@ window.onload = function() {
 		
 		fx.play('destroy');
 		
-		if(score%5==0){
+		if(score%20==0){
 			grav=grav*1.25;
 		}
 		createEffect();
