@@ -72,10 +72,7 @@ window.onload = function() {
 		introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
 		introText.anchor.setTo(0.5, 0.5);
 		
-		if(timer==0){
 		game.input.onDown.add(createEffect, this);
-		timer++;
-	}
 
 	}
 
@@ -159,7 +156,7 @@ window.onload = function() {
 	
 	function gameOver() {
     
-		if(timer==1){
+		if(timer==0){
 	    fx.play('over');
 		introText.text = 'Game Over!';
 	    introText.visible = true;
