@@ -78,7 +78,7 @@ window.onload = function() {
 
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
 
-	    player.body.velocity.x = 10;
+	    player.body.velocity.x = 0;
 
 		if (cursors.left.isDown)
 	    {
