@@ -72,7 +72,7 @@ window.onload = function() {
 		introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
 		introText.anchor.setTo(0.5, 0.5);
 		
-		if(timer=0){
+		if(timer==0){
 		game.input.onDown.add(createEffect, this);
 		timer++;
 	}
