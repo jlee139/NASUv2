@@ -77,8 +77,13 @@ window.onload = function() {
 	function update() {
 
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
-
 	    player.body.velocity.x = 0;
+
+		if(effect!=null){
+			if(effect.y==495){
+				gameOver();
+			}
+		}
 
 		if (cursors.left.isDown)
 	    {
@@ -131,14 +136,9 @@ window.onload = function() {
 		effect.body.gravity.y=50;
 		game.physics.arcade.gravity.y = grav;
 		
-		if(effect.body.touching.down){
-			gameOver();
-		}
-		
-		//effect.events.onOutOfBounds.add(gameOver, this);
 	}
 	
-	function collisionHandler (_player, _effect) {
+	function collisionHandler(_player, _effect) {
 
 		_effect.kill(); //destroy effect
 		score ++; //increment score
@@ -153,7 +153,7 @@ window.onload = function() {
 
 	}
 	
-	function gameOver () {
+	function gameOver() {
     
 	    fx.play('over');
 		introText.text = 'Game Over!';
@@ -161,7 +161,7 @@ window.onload = function() {
 
 	}
 
-	function render () {
+	function render() {
 
 	    //game.debug.text(game.time.suggestedFps, 32, 32);
 	    // game.debug.text(game.time.physicsElapsed, 32, 32);
