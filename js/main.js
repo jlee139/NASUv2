@@ -79,9 +79,11 @@ window.onload = function() {
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
 		player.body.velocity.x = 0;
 
+		if(effect!=null){
 			if( effect.body.onFloor() ){
 				gameOver();
 			}
+		}
 
 		if (cursors.left.isDown)
 	    {
