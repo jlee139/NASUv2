@@ -78,12 +78,8 @@ window.onload = function() {
 
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
 
-	    player.body.velocity.x = 0;
+	    player.body.velocity.x = 10;
 
-		if(effect.y<=10){
-			gameOver();
-		}
-		
 		if (cursors.left.isDown)
 	    {
 	        player.body.velocity.x = -150;
@@ -134,6 +130,12 @@ window.onload = function() {
 		effect.body.collideWorldBounds=true;
 		effect.body.gravity.y=50;
 		game.physics.arcade.gravity.y = grav;
+		
+		if(effect.body.touching.down){
+			gameOver();
+		}
+		
+		//effect.events.onOutOfBounds.add(gameOver, this);
 	}
 	
 	function collisionHandler (_player, _effect) {
