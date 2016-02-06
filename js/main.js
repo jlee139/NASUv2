@@ -13,63 +13,78 @@ window.onload = function() {
     
     "use strict";
     
-	var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+	var game = new Phaser.Game(700, 500, Phaser.CANVAS, 'game', { preload: preload, create: create, update: update, render: render });
 
 	function preload() {
 
-	    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-	    game.load.image('background', 'assets/background2.png');
-		game.load.image('starie', 'assets/star.png');
+		//Add my spirites and background image
+		game.load.spritesheet('yume', 'assets/yume.png', 32, 48);
+	    game.load.image('background', 'assets/redmaze.png');
+		game.load.image('effectie', 'assets/effect.png');
+		game.load.audio('sfx', 'assets/sounds.ogg');
 
 	}
 
-	var star;
+	var effect;
 	var player;
+	var grav;
 	var facing = 'left';
 	var jumpTimer = 0;
+	var score =0;
 	var cursors;
-	var jumpButton;
 	var bg;
+	var scoreText;
+	var introText;
+	var fx;
 
 	function create() {
 
 	    game.physics.startSystem(Phaser.Physics.ARCADE);
 
-	    game.time.desiredFps = 30;
+	    bg = game.add.tileSprite(0, 0, 700, 500, 'background');
 
-	    bg = game.add.tileSprite(0, 0, 800, 600, 'background');
+		grav = 55; //starting slow gravity
+		game.physics.arcade.gravity.y = grav;
 
-	    game.physics.arcade.gravity.y = 250;
+	    player = game.add.sprite(350, 500, 'yume');
+		
+	    game.physics.enable(player, Phaser.Physics.ARCADE);
 
-	    player = game.add.sprite(32, 32, 'dude');
-		star = game.add.sprite(16, 16, 'starie');
-	    game.physics.enable( [player, star], Phaser.Physics.ARCADE);
-
-	    player.body.bounce.y = 0.2;
+	    player.body.bounce.y = 0.1;
 	    player.body.collideWorldBounds = true;
+		player.body.gravity.y=100;
 	    player.body.setSize(20, 32, 5, 16);
 		
-		star.body.collideWorldBounds=true;
-		star.body.bounce.y=0.8;
-		star.body.gravity.y=200;
-
 	    player.animations.add('left', [0, 1, 2, 3], 10, true);
 	    player.animations.add('turn', [4], 20, true);
 	    player.animations.add('right', [5, 6, 7, 8], 10, true);
 		
-
 	    cursors = game.input.keyboard.createCursorKeys();
-	    jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		
+		fx = game.add.audio('sfx');
+		fx.allowMultiple = true;
+		
+		fx.addMarker('destroy', 0, 0.37);
+		fx.addMarker('over', 0.37, 0.69);
+		
+		scoreText = game.add.text(32, 10, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
+		introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
+		introText.anchor.setTo(0.5, 0.5);
+		game.input.onDown.add(createEffect, this);
 
 	}
 
 	function update() {
 
-	    // game.physics.arcade.collide(player, layer);
+	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
 
 	    player.body.velocity.x = 0;
 
-	    if (cursors.left.isDown)
+		// if(effect.body.y==0){
+// 			gameOver();
+// 		}
+		
+		if (cursors.left.isDown)
 	    {
 	        player.body.velocity.x = -150;
 
@@ -107,19 +122,49 @@ window.onload = function() {
 	            facing = 'idle';
 	        }
 	    }
+		
+		
     
-	    if (jumpButton.isDown && player.body.onFloor() && game.time.now > jumpTimer)
-	    {
-	        player.body.velocity.y = -250;
-	        jumpTimer = game.time.now + 750;
-	    }
+
+	}
+	
+	function createEffect(){
+		//This function randomly creates an Effect and drops it randomly.
+		introText.visible = false;
+		
+		effect = game.add.sprite(game.world.randomX, 0, 'effectie');
+		game.physics.enable(effect, Phaser.Physics.ARCADE);
+		effect.body.collideWorldBounds=true;
+		effect.body.gravity.y=50;
+		game.physics.arcade.gravity.y = grav;
+	}
+	
+	function collisionHandler (_player, _effect) {
+
+		_effect.kill(); //destroy effect
+		score ++; //increment score
+		scoreText.text = 'score: ' + score; //display new score
+		
+		fx.play('destroy');
+		
+		if(score%5==0){
+			grav=grav*1.25;
+		}
+		createEffect();
+
+	}
+	
+	function gameOver () {
+    
+	    fx.play('over');
+		introText.text = 'Game Over!';
+	    introText.visible = true;
 
 	}
 
 	function render () {
 
-	    game.debug.text(game.time.suggestedFps, 32, 32);
-
+	    //game.debug.text(game.time.suggestedFps, 32, 32);
 	    // game.debug.text(game.time.physicsElapsed, 32, 32);
 	    // game.debug.body(player);
 	    // game.debug.bodyInfo(player, 16, 24);
