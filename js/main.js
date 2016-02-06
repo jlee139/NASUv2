@@ -36,6 +36,7 @@ window.onload = function() {
 	var scoreText;
 	var introText;
 	var fx;
+	var timer=0;
 
 	function create() {
 
@@ -154,9 +155,14 @@ window.onload = function() {
 	
 	function gameOver() {
     
+		if(timer==0){
 	    fx.play('over');
 		introText.text = 'Game Over!';
 	    introText.visible = true;
+	}
+	else{
+		game.pause();
+	}
 
 	}
 
