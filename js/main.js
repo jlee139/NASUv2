@@ -80,7 +80,7 @@ window.onload = function() {
 
 	    player.body.velocity.x = 0;
 
-		if(effect.body.y==0){
+		if(effect.y<=10){
 			gameOver();
 		}
 		
