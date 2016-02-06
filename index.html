@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Falling Stars</title>
+    <title>ゆめにっき NASU</title>
     <script src="js/phaser.js"></script>
     <script src="js/main.js"></script>
 
@@ -22,64 +22,75 @@ body
 <body>
 <div id="game"></div>
 <div id="readme">
-<h2>Catch a Falling Star</h2>
+<h2>NASU: Madotsuki Style</h2>
+
+
+<h4>High Concept:</h4>
+<p>Help Madotsuki catch the falling Effect before it hits the ground.</p>
+
+
+<h4>Player Experience Goals:</h4>
+<p>This game was created as a tribute to the original Yume Nikki game, hence it borrows heavily from the source. The players should reminisce of Yume Nikki when playing this game, particularly of NASU, the side game within Yume Nikki. <small>For those who have never played Yume Nikki, which I suspect most of my classmates to be, I hope they get the sense of the delightful unsettlement from this game as most people do when playing Yume Nikki. </small></p>
+
+
+<h4>Genre:</h4>
+<p>This is a catch the falling object arcade game.</p>
+
+
+<h4>Game play:</h4>
+<p>The player has very limited option in this game. To start the game, the player must click on the game space with their mouse. Afterwards, the game will drop an Effect (shaped like an egg, for those who have never played Yume Nikki). Then the player has the option of clicking either the left arrow key or the right arrow key to move the character on screen (Madotsuki) left or right, respectfully. When the Effect falls upon Madotsuki's head, the Effect will disappear and a new one will spawn randomly from above. Then the player repeats moving left or right until the Effect falls to the ground, signaling Game Over. There is nothing more to this game aside from that. </p>
+
+<p>To make it more like the original NASU game, I should have added the jump function. This function would have worked as thus: the only way for Madotsuki to catch the falling Effect would be by jumping and colliding into the Effect. In other words, even if the Effect fell right on top of her, it would still cause a Game Over because she didn’t jump. This was how the original NASU was designed, which caused quite a lot of frustration for the players.</p>
+<p>Another function that would have been interesting to see is using different Effects for varying scores and difficulty. For example, instead of having just one Effect, I could’ve used all 24 Effects with varying levels of difficulty (how fast they fall) and scores.</p> 
+
+<p>As can be seen, these functions were not implemented. I opted against the jump function due to the simple fact that it was the reason why I strongly disliked NASU. Using all 24 Effects would have taken too much time and I didn’t think it added anything new to the game. Thus, the game I present to you here is the final product.</p>
+
+
+<h4>Prototype goal:</h4>
+<p>The most important prototyping for this game is really how well I could create this game. Although it is important that this game works, it is more important to me that I understand how to put this game together using Phaser and Github. Therefore, the exploration to find different ways to do what I wanted was much more important. </p>
+
+
+<h4>Features:</h4>
+<p>Aside from featuring Madotsuki as the main character instead of NASU, this game also boosts of sprite animation of the original games as well as background sfxs. Everything within the game (aside from coding) were taken straight from Yume Nikki game. Despite that, this game has a unique story and setting that the original games did not have. </p>
+
+
+<h4>Setting/Premise:</h4>
+<p>This game is set within the Yume Nikki universe. However, there is a slight difference. Instead of Madotsuki playing the game “NASU” on her NES, she is the main character of the NASU game. Instead of NASU moving around to catch eggplants in its mouth, Madotsuki must catch the falling Effects. Unlike in Yume Nikki, she does not gain special abilities when she catches the Effect. </p>
+
+
+<h4>Story:</h4>
+<p>Madotsuki, who normally spends her day daydreaming or playing on her NES, wakes up one day in the NASU game. Just like her other dreams, there is still the need to collect the Effects, even if it doesn’t give her special abilities. Therefore, as the Effects rain down from above, quite like the eggplants did to NASU, she must catch all of them before they fall to the ground and shatter.</p>
+
+
+<h4>Target Audience:</h4>
+<p>This is mainly intended for the fans of the Yume Nikki jrpg horror game. Fans of the game will recognize not only the sprite used, but also the sfxs and gaming mechanism found in the NASU side game (although, they might find this game much easier to play than the original counterpart). Aside from the fans, anyone who enjoy a good mindless game would find this entertaining to play for few minutes at a time.</p>
+
+
+<h4>Play time:</h4>
+<p>Technically, as long as the player is lucky and is good at this kind of game, this game will go on forever. Unfortunately, due to the increasing speed of the falling Effect, it becomes harder and harder to catch it, especially when it falls to the opposite side of the screen. Considering that, the highest point tends to be around 15-30 points, which boils down to only a few minutes of game time.</p>
+
+
+<h4>Strategies:</h4>
+<p>Aside from blind luck, players should rely on their quick reflexes to spot the falling Effect in order to move Madotsuki under it. Unfortunately, due to the randomization of the location of where the Effect is dropped, it is hard to give a concrete strategy.</p>
+
+
+<h4>Prototype Assets:</h4>
 <ul>
-
-<li><strong>High Concept:</strong>
-Catch the stars falling from the sky before they hit the ground and dies.
-</li>
-
-<li><strong>Player Experience Goals:</strong>
-What experience do you want players to have when playing your game?
-</li>
-
-<li><strong>Genre:</strong>
-A single sentence that places the game within a game genre or a hybrid of genres.
-</li>
-
-<li><strong>Game play:</strong>
-A paragraph describing the actions the player can perform, the system dynamics, and the core mechanic. Include a concise explanation of the prototype’s inputs and their expected effects (how to play). You can also describe game play that is not in the prototype. You may include mock-up images for parts of the game not in the prototype.
-</li>
-
-<li><strong>Prototype goal:</strong>
-What game mechanic is this prototype evaluating?
-</li>
-
-<li><strong>Features:</strong>
-What are the unique aspects of your game that set it apart?
-</li>
-
-<li><strong>Setting/Premise:</strong>
-This world, which has been heavily borrowed from Miyazaki's <em>How's Moving Castle</em>, is filled with magic and demons. Young wizards with wishes to become the strongest 
-
-A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, put it here. If the game is abstract, then say so.
-</li>
-
-<li><strong>Story:</strong>
-If the game has a story, summarize it in a paragraph. How will the dramatic tension interact with the gameplay tension?
-</li>
-
-<li><strong>Target Audience:</strong>
-A single sentence that describes the demographic you're trying to reach.
-</li>
-
-<li><strong>Play time:</strong>
-How long does your game take to play?
-</li>
-
-<li><strong>Strategies:</strong>
-What player strategies do you expect will be effective at playing this game?
-</li>
-
-<li><strong>Prototype Assets:</strong>
-Did you make your prototype assets from scratch? Did you borrow them? Cite your sources here.
-</li>
-
-<li><strong>Prototype Closest Other Game:</strong>
-This game took examples from the Basic Platformer, Gravity, Breakout, and Audio of Phaser Examples. It combined all of the lessons learned from there to create a simple catching game.
-</li>
-
+<li>Yume Nikki was created by Kikiyama [<a href=“http://www3.nns.ne.jp/pri/tk-mto/“>x</a>] </li>
+<ul>
+<li>The sfxs were pieced together from Yume Nikki’s sound sources.</li>
+<li>The picture of the Effect was taken from Yume Nikki’s “Blonde Hair” Effect.</li>
+<li>The background is the Red Maze from Yume Nikki.</li>
 </ul>
+<li>The sprite sheet was pieced together from flowerpalette’s sprite sheet. [<a href=“http://flowerpalette.deviantart.com/art/RPG-maker-VX-Sprite-Madotsuki-from-Yume-Nikki-517839197”>x</a>]</li>
+</ul>
+
+
+<h4>Prototype Closest Other Game:</h4>
+<p>As mentioned many times, this is based on the side game NASU from the jrpg horror game Yume Nikki. Aside from its original source, examples from the Phaser's Basic Platformer, Gravity, Breakout, and Audio were used.</p>
+
+
+
 </div>
 </body>
 </html>
