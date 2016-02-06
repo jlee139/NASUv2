@@ -77,13 +77,11 @@ window.onload = function() {
 	function update() {
 
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
-	    player.body.velocity.x = 0;
+		player.body.velocity.x = 0;
 
-		if(effect!=null){
-			if(effect.y==495){
+			if( effect.body.onFloor() ){
 				gameOver();
 			}
-		}
 
 		if (cursors.left.isDown)
 	    {
@@ -135,7 +133,6 @@ window.onload = function() {
 		effect.body.collideWorldBounds=true;
 		effect.body.gravity.y=50;
 		game.physics.arcade.gravity.y = grav;
-		
 	}
 	
 	function collisionHandler(_player, _effect) {
