@@ -80,9 +80,9 @@ window.onload = function() {
 
 	    player.body.velocity.x = 0;
 
-		// if(effect.body.y==0){
-// 			gameOver();
-// 		}
+		if(effect.body.y==0){
+			gameOver();
+		}
 		
 		if (cursors.left.isDown)
 	    {
