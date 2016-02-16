@@ -66,7 +66,7 @@ window.onload = function() {
 		
 	    cursors = game.input.keyboard.createCursorKeys();
 		
-		music = game.add.adutio('song');
+		music = game.add.audio('song');
 		music.play();
 		
 		fx = game.add.audio('sfx');
