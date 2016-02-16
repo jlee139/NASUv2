@@ -21,6 +21,7 @@ window.onload = function() {
 		game.load.spritesheet('yume', 'assets/yume.png', 32, 48);
 	    game.load.image('background', 'assets/redmaze.png');
 		game.load.image('effectie', 'assets/effect.png');
+		game.load.image('starie', 'assets/star.png');
 		game.load.audio('sfx', 'assets/sounds.ogg');
 
 	}
@@ -89,7 +90,7 @@ window.onload = function() {
 
 		if (cursors.left.isDown)
 	    {
-	        player.body.velocity.x = -150;
+	        player.body.velocity.x = -200;
 
 	        if (facing != 'left')
 	        {
@@ -99,7 +100,7 @@ window.onload = function() {
 	    }
 	    else if (cursors.right.isDown)
 	    {
-	        player.body.velocity.x = 150;
+	        player.body.velocity.x = 200;
 
 	        if (facing != 'right')
 	        {
