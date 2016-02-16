@@ -21,7 +21,7 @@ window.onload = function() {
 		game.load.spritesheet('yume', 'assets/yume.png', 32, 48);
 	    game.load.image('background', 'assets/redmaze.png');
 		game.load.image('effectie', 'assets/effect.png');
-		game.load.image('starie', 'assets/star.png');
+		game.load.image('starie', 'assets/knife.png');
 		game.load.audio('sfx', 'assets/sounds.ogg');
 		game.load.audio('song', ['assets/endingsong.mp3', 'assets/endingsong.ogg']);
 
@@ -74,6 +74,7 @@ window.onload = function() {
 		
 		fx.addMarker('destroy', 0, 0.37);
 		fx.addMarker('over', 0.37, 0.69);
+		fx.addMarker('giggle',0.70,0.90);
 		
 		scoreText = game.add.text(32, 10, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
 		introText = game.add.text(game.world.centerX, 400, '- click to start -', { font: "40px Arial", fill: "#ffffff", align: "center" });
@@ -86,6 +87,7 @@ window.onload = function() {
 	function update() {
 
 	    game.physics.arcade.collide(player, effect, collisionHandler, null, this);
+		game.physics.arcade.collide(player, star, collisionHandler2, null, this);
 		player.body.velocity.x = 0;
 
 		if(effect!=null){
@@ -96,7 +98,7 @@ window.onload = function() {
 
 		if (cursors.left.isDown)
 	    {
-	        player.body.velocity.x = -200;
+	        player.body.velocity.x = -180;
 
 	        if (facing != 'left')
 	        {
@@ -106,7 +108,7 @@ window.onload = function() {
 	    }
 	    else if (cursors.right.isDown)
 	    {
-	        player.body.velocity.x = 200;
+	        player.body.velocity.x = 180;
 
 	        if (facing != 'right')
 	        {
@@ -173,6 +175,13 @@ window.onload = function() {
 		}
 		createEffect();
 
+	}
+	
+	function collisionHandler2(_player, _star) {
+		_star.kill();//destroy the star
+		score--;//take away from score
+		scoreText.text = 'score: ' + score; //display new score
+		fx.play('giggle');
 	}
 	
 	function gameOver() {
