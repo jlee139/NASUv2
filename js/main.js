@@ -23,11 +23,13 @@ window.onload = function() {
 		game.load.image('effectie', 'assets/effect.png');
 		game.load.image('starie', 'assets/star.png');
 		game.load.audio('sfx', 'assets/sounds.ogg');
+		game.load.audio('song', ['assets/endingsong.mp3', 'assets/endingsong.ogg']);
 
 	}
 
 	var effect;
 	var player;
+	var star;
 	var grav;
 	var facing = 'left';
 	var jumpTimer = 0;
@@ -37,6 +39,7 @@ window.onload = function() {
 	var scoreText;
 	var introText;
 	var fx;
+	var music;
 	var timer=0;
 
 	function create() {
@@ -62,6 +65,9 @@ window.onload = function() {
 	    player.animations.add('right', [5, 6, 7, 8], 10, true);
 		
 	    cursors = game.input.keyboard.createCursorKeys();
+		
+		music = game.add.adutio('song');
+		music.play();
 		
 		fx = game.add.audio('sfx');
 		fx.allowMultiple = true;
@@ -133,11 +139,25 @@ window.onload = function() {
 		//This function randomly creates an Effect and drops it randomly.
 		introText.visible = false;
 		
+		if(Math.random()>0.5){
+		
 		effect = game.add.sprite(game.world.randomX, 0, 'effectie');
 		game.physics.enable(effect, Phaser.Physics.ARCADE);
 		effect.body.collideWorldBounds=true;
 		effect.body.gravity.y=50;
 		game.physics.arcade.gravity.y = grav;
+	}
+	else{
+		effect = game.add.sprite(game.world.randomX, 0, 'effectie');
+		star = game.add.sprite(game.world.randomX,0,'starie');
+		game.physics.enable(effect, Phaser.Physics.ARCADE);
+		effect.body.collideWorldBounds=true;
+		effect.body.gravity.y=50;
+		game.physics.enable(star, Phaser.Physics.ARCADE);
+		star.body.collideWorldBounds=true;
+		star.body.gravity.y=50;
+		game.physics.arcade.gravity.y = grav;
+	}
 	}
 	
 	function collisionHandler(_player, _effect) {
