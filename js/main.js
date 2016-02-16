@@ -178,6 +178,7 @@ window.onload = function() {
 	
 	function collisionHandler(_player, _effect) {
 
+		if(jumpButton.isDown){
 		_effect.kill(); //destroy effect
 		score ++; //increment score
 		scoreText.text = 'score: ' + score; //display new score
@@ -189,6 +190,10 @@ window.onload = function() {
 			bobo=bobo*1.25;
 		}
 		createEffect();
+	}
+	else{
+		gameOver();
+	}
 
 	}
 	
