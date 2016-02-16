@@ -36,11 +36,13 @@ window.onload = function() {
 	var score =0;
 	var cursors;
 	var bg;
+	var jumpButton;
 	var scoreText;
 	var introText;
 	var fx;
 	var music;
 	var timer=0;
+	var bobo = 0.2;
 
 	function create() {
 
@@ -65,6 +67,7 @@ window.onload = function() {
 	    player.animations.add('right', [5, 6, 7, 8], 10, true);
 		
 	    cursors = game.input.keyboard.createCursorKeys();
+		jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 		
 		music = game.add.audio('song');
 		music.play();
@@ -90,6 +93,10 @@ window.onload = function() {
 		game.physics.arcade.collide(player, star, collisionHandler2, null, this);
 		player.body.velocity.x = 0;
 
+		if(score<0){
+			gameOver();
+		}
+
 		if(effect!=null){
 			if( effect.body.onFloor() ){
 				gameOver();
@@ -98,7 +105,7 @@ window.onload = function() {
 
 		if (cursors.left.isDown)
 	    {
-	        player.body.velocity.x = -180;
+	        player.body.velocity.x = -190;
 
 	        if (facing != 'left')
 	        {
@@ -108,7 +115,7 @@ window.onload = function() {
 	    }
 	    else if (cursors.right.isDown)
 	    {
-	        player.body.velocity.x = 180;
+	        player.body.velocity.x = 190;
 
 	        if (facing != 'right')
 	        {
@@ -134,6 +141,12 @@ window.onload = function() {
 	            facing = 'idle';
 	        }
 	    }
+		
+		if (jumpButton.isDown && player.body.onFloor() && game.time.now > jumpTimer)
+		    {
+		        player.body.velocity.y = -100;
+		        jumpTimer = game.time.now + 750;
+		    }
 
 	}
 	
@@ -141,8 +154,7 @@ window.onload = function() {
 		//This function randomly creates an Effect and drops it randomly.
 		introText.visible = false;
 		
-		if(Math.random()>0.5){
-		
+		if(Math.random()>bobo){
 		effect = game.add.sprite(game.world.randomX, 0, 'effectie');
 		game.physics.enable(effect, Phaser.Physics.ARCADE);
 		effect.body.collideWorldBounds=true;
@@ -150,15 +162,17 @@ window.onload = function() {
 		game.physics.arcade.gravity.y = grav;
 	}
 	else{
-		effect = game.add.sprite(game.world.randomX, 0, 'effectie');
-		star = game.add.sprite(game.world.randomX,0,'starie');
-		game.physics.enable(effect, Phaser.Physics.ARCADE);
-		effect.body.collideWorldBounds=true;
-		effect.body.gravity.y=50;
-		game.physics.enable(star, Phaser.Physics.ARCADE);
-		star.body.collideWorldBounds=true;
-		star.body.gravity.y=50;
-		game.physics.arcade.gravity.y = grav;
+		star = game.add.group();
+		
+		for (var i = 0; i < Math.random()*16; i++)
+		    {
+		        star.create(game.world.randomX, 0, 'starie');
+				game.physics.enable(star, Phaser.Physics.ARCADE);
+		    }
+		
+		
+			createEffect();
+		
 	}
 	}
 	
@@ -171,7 +185,8 @@ window.onload = function() {
 		fx.play('destroy');
 		
 		if(score%20==0){
-			grav=grav*1.25;
+			grav=grav*1.35;
+			bobo=bobo*1.25;
 		}
 		createEffect();
 
@@ -185,7 +200,6 @@ window.onload = function() {
 	}
 	
 	function gameOver() {
-    
 		if(timer==0){
 	    fx.play('over');
 		introText.text = 'Game Over!';
