@@ -181,6 +181,7 @@ window.onload = function() {
 	    fx.play('over');
 		introText.text = 'Game Over!';
 	    introText.visible = true;
+		music.pause();
 		timer++;
 	}
 	else{
